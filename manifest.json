@@ -6,7 +6,10 @@
   "version": "1.0",
   "background": { "scripts": ["background.js"] },
   "permissions": [
-    "tabs", "http://*/*", "contextMenus"
+    "tabs",
+    "activeTab",
+    "http://*/*",
+    "contextMenus"
   ],
   "browser_action": {
     "default_icon": {

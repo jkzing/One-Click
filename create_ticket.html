@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create JIRA Ticket</title>
+	<link rel="stylesheet" href="css/batch.css">
+	<link rel="stylesheet" href="css/jira.webresources:global-static.css">
+	<link rel="stylesheet" href="css/base.css">
+</head>
+<body> 
+	<div class="aui-popup">
+		<h2 class="aui-popup-heading">
+			Create Issue
+		</h2>
+		<div class="aui-popup-content">
+			<div class="qf-container">
+				<div class="qf-unconfigurable-form">
+					<form name="jiraform" action="#" class="aui">
+						<div class="form-body" style="max-height: 729px;">
+							<div class="issue-setup-fields">
+								<div class="qf-field qf-field-project qf-required">
+									<div class="field-group">
+										<label for="project">
+											Project
+											<span class="aui-icon icon-required">Required</span>
+										</label>
+										<div class="aui-ss project-ss aui-ss-has-entity-icon" id="project-single-select">
+											<input autocomplete="off" class="text aui-ss-field ajs-dirty-warning-exempt" id="project-field" value="CO Cloud operations">
+											<div class="aui-list" id="project-suggestions" tabindex="-1"></div>
+											<div class="aui-ss-entity-icon" style="background-image: url(http://jira.successfactors.com/secure/projectavatar?pid=10710&amp;size=small);"></div>
+										</div>
+									</div>
+								</div>
+								<div class="qf-field qf-field-issuetype qf-required">
+									<div class="field-group">
+										<label for="issuetype">
+											Issue Type
+											<span class="aui-icon icon-required">Required</span>
+										</label>
+										<div class="aui-ss issuetype-ss aui-ss-has-entity-icon" id="issuetype-single-select">
+											<input autocomplete="off" class="text aui-ss-field ajs-dirty-warning-exempt" id="issuetype-field" value="Log Requests">
+											<div class="aui-list" id="issuetype-suggestions" tabindex="-1"></div>
+											<div class="aui-ss-entity-icon" style="background-image: url(http://jira.successfactors.com/images/icons/issuetypes/genericissue.png);"></div>
+										</div>
+										<div class="description">
+											Some issue types are unavailable due to incompatible field configuration and/or workflow associations.
+										</div>
+									</div>
+								</div>
+							</div>
+							<input type="hidden" name="atl_token" value="AU6R-ZM9V-XXIL-R3RX|7bb01f36480e21a4aab153703e03af796b4b3d26|lin">
+							<div class="content">
+								<div class="field-group">
+									<label for="customfield_10005">
+										Customer Name
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+
+									<input class="textfield text long-field" id="customfield_10005" name="customfield_10005" maxlength="254" type="text" value="">
+
+									<div class="description">Please use Fully Qualified Customer name - NO ABBREVIATIONS</div>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10841">
+										Product Module/s
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<select class="select" name="customfield_10841" id="customfield_10841">
+										<option value="">None</option>
+										<option value="11663">BizX Core</option>
+										<option value="12760">Boomi</option>
+										<option value="11664">Jam(Cube Tree &amp; Jambok)</option>
+										<option value="11665">LMS/Learning Management</option>
+										<option value="11694">WorkForce Analytics &amp; Planning</option>
+										<option value="11667">Jobs2Web</option>
+										<option value="11703">Infrastructure</option>
+										<option value="12234">KMS  Onboarding</option>
+										<option value="12574">HANA - NFL</option>
+									</select>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10842">
+										Environment Type
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<select class="select" name="customfield_10842" id="customfield_10842">
+										<option selected="selected" value="11668">Production</option>
+										<option value="11669">Staging</option>
+										<option value="11670">Training</option>
+										<option value="11671">Sandbox/QA</option>
+										<option value="11930">SalesDemo</option>
+									</select>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10843">
+										Datacenter Location
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<select class="select" name="customfield_10843" id="customfield_10843">
+										<option value="">None</option>
+										<option value="11672">Arizona (AZ)</option>
+										<option value="11673">Amsterdam (AMS)</option>
+										<option value="11674">Amsterdam 2 (AMS2)</option>
+										<option value="11675">Ashburn (ASH)</option>
+										<option value="11676">Australia (AUS)</option>
+										<option value="11677">China (CHN)</option>
+										<option value="11678">New Jersey (NJ)</option>
+										<option value="11679">Sacramento (SAC)</option>
+										<option value="11692">Beltsville</option>
+										<option value="12023">DC1, NJ</option>
+										<option value="12024">DC2, AMS2</option>
+										<option value="12025">DC4, AZ</option>
+										<option value="12026">DC5, AMS4</option>
+										<option value="12027">DC5 Siemens, AMS4</option>
+										<option value="12028">DC7, AMS4</option>
+										<option value="12029">DC8, VA</option>
+										<option value="12030">DC8 (DC171) Federal, VA</option>
+										<option value="12031">Ashburn LMS, VA</option>
+										<option value="12032">Beltsville LMS, MD</option>
+										<option value="12033">DC10, SYD</option>
+										<option value="12034">DC11, AUS</option>
+										<option value="12035">DC12, ROT</option>
+										<option value="12036">Federal</option>
+										<option value="12037">Global</option>
+										<option value="12233">KMS  DC Zerolag</option>
+										<option value="12460">DC13, ROT</option>
+										<option value="12461">RW</option>
+									</select>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10844">
+										CS Ticket Number
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+
+									<input class="textfield text long-field" id="customfield_10844" name="customfield_10844" maxlength="254" type="text" value=""></div>
+								<div class="field-group">
+									<label for="summary">
+										Summary
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<input class="text long-field" id="summary" name="summary" type="text" value=""></div>
+								<div class="field-group">
+									<label for="description">
+										Description
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+
+									<textarea class="textarea long-field long-field mentionable" id="description" name="description" rows="12" data-projectkey="CO"></textarea>
+
+									<div class="description">
+										For enhancements kindly provide the KEY BUSINESS DRIVER behind this request.
+										<br>
+										For defects kindly provide 1. Steps to Reproduce 2. Current behavior 3. Desired behavior
+									</div>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10002">
+										SLA
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<select class="select" name="customfield_10002" id="customfield_10002">
+										<option value="">None</option>
+										<option value="10029">P1</option>
+										<option value="10030">P2</option>
+										<option value="10031">P3</option>
+										<option value="10032">P4</option>
+										<option value="10033">P5</option>
+									</select>
+									<div class="description">
+										This field reflects the SLA Priority. Kindly refer http://10.50.0.28/pub/Engineering/WebHome/ContractualPriorityDefinitions.doc for details.
+									</div>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10846">
+										Customer Region
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<select class="select" name="customfield_10846" id="customfield_10846">
+										<option selected="selected" value="11680">US Commercial</option>
+										<option value="11681">EMEA Commercial</option>
+										<option value="11682">US Federal</option>
+										<option value="11704">Global</option>
+										<option value="11870">AsiaPac</option>
+										<option value="11871">South America</option>
+									</select>
+								</div>
+								<div class="field-group">
+									<label for="customfield_10847">
+										Request Source
+										<span class="aui-icon icon-required">Required</span>
+									</label>
+									<select class="select" name="customfield_10847" id="customfield_10847">
+										<option value="">None</option>
+										<option value="11683">Customer Success</option>
+										<option value="11684">Professional Services</option>
+										<option value="11685">Managed Services</option>
+										<option value="11686">Engineering</option>
+										<option value="11693">Operations</option>
+										<option value="11890">Sales</option>
+									</select>
+									<div class="description">
+										Please select the option that most accurately describes  YOUR DEPARTMENT”
+									</div>
+								</div>
+								<!-- fields inserted here via javascript -->
+							</div>
+						</div>
+						<div class="buttons-container form-footer">
+							<div class="buttons">
+								<input accesskey="s" title="Press Ctrl+Alt+s to submit this form" class="button" id="create-issue-submit" name="Edit" type="submit" value="Create">
+								<a href="#" accesskey="`" title="Press Ctrl+Alt+` to cancel" class="cancel">Cancel</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+	<script type="text/javascript" src="//code.jquery.com/jquery.js"></script>
+</html>

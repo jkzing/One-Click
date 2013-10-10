@@ -5,9 +5,14 @@ var iCount = 0;
 
 function updateBadge() {
 	if (iCount++ <= 9999) {
-
 		chrome.browserAction.setBadgeText({'text': iCount.toString()});
 	}
+}
+
+function getTicketInfoByInjectJS() {
+	chrome.tabs.executeScript(null, {
+		file: 'js/ticketinfo.js'
+	});
 }
 
 function testListener() {
@@ -22,10 +27,10 @@ function contextMenuClicked(info, tab) {
 
 function updateContextMenu() {
 	chrome.contextMenus.update(contextMenuId, {
-		'type': 'normal',
-		'title': 'CLICK ME CLICK ME',
-		'contexts': ['all'], 
-		'onclick': function(info, tab) {
+		type: 'normal',
+		title: 'Create JIRA ticket',
+		contexts: ['all'], 
+		onclick: function(info, tab) {
 			alert('I have been changed by updateContextMenu function!');
 			console.log(info);
 		}
@@ -33,13 +38,18 @@ function updateContextMenu() {
 }
 
 var contextMenuId = chrome.contextMenus.create({
-	'type': 'normal',
-	'title': 'CLICK ME CLICK ME',
-	'contexts': ['all'], 
-	'onclick': function(info, tab) {
-		alert('I\'ve been clicked!');
-		console.log(info);
+	type: 'normal',
+	title: 'Create JIRA ticket',
+	contexts: ['all'], 
+	onclick: function(info, tab) {
+		createTab();
 	}
 });
 
-chrome.browserAction.onClicked.addListener(updateContextMenu);
+function createTab() {
+	chrome.tabs.create({
+		url: 'create_ticket.html'
+	});
+}
+
+chrome.browserAction.onClicked.addListener(getTicketInfoByInjectJS);
