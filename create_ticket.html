@@ -24,7 +24,7 @@
 											<span class="aui-icon icon-required">Required</span>
 										</label>
 										<div class="aui-ss project-ss aui-ss-has-entity-icon" id="project-single-select">
-											<input autocomplete="off" class="text aui-ss-field ajs-dirty-warning-exempt" id="project-field" value="CO Cloud operations">
+											<input autocomplete="off" class="text aui-ss-field ajs-dirty-warning-exempt" id="project-field" value="CO Cloud operations" readonly>
 											<div class="aui-list" id="project-suggestions" tabindex="-1"></div>
 											<div class="aui-ss-entity-icon" style="background-image: url(http://jira.successfactors.com/secure/projectavatar?pid=10710&amp;size=small);"></div>
 										</div>
@@ -37,7 +37,7 @@
 											<span class="aui-icon icon-required">Required</span>
 										</label>
 										<div class="aui-ss issuetype-ss aui-ss-has-entity-icon" id="issuetype-single-select">
-											<input autocomplete="off" class="text aui-ss-field ajs-dirty-warning-exempt" id="issuetype-field" value="Log Requests">
+											<input autocomplete="off" class="text aui-ss-field ajs-dirty-warning-exempt" id="issuetype-field" value="Log Requests" readonly>
 											<div class="aui-list" id="issuetype-suggestions" tabindex="-1"></div>
 											<div class="aui-ss-entity-icon" style="background-image: url(http://jira.successfactors.com/images/icons/issuetypes/genericissue.png);"></div>
 										</div>
@@ -66,7 +66,7 @@
 									</label>
 									<select class="select" name="customfield_10841" id="customfield_10841">
 										<option value="">None</option>
-										<option value="11663">BizX Core</option>
+										<option value="11663" selected="selected">BizX Core</option>
 										<option value="12760">Boomi</option>
 										<option value="11664">Jam(Cube Tree &amp; Jambok)</option>
 										<option value="11665">LMS/Learning Management</option>
@@ -97,7 +97,7 @@
 									</label>
 									<select class="select" name="customfield_10843" id="customfield_10843">
 										<option value="">None</option>
-										<option value="11672">Arizona (AZ)</option>
+										<option value="11672" selected="selected">Arizona (AZ)</option>
 										<option value="11673">Amsterdam (AMS)</option>
 										<option value="11674">Amsterdam 2 (AMS2)</option>
 										<option value="11675">Ashburn (ASH)</option>
@@ -162,7 +162,7 @@
 										<option value="">None</option>
 										<option value="10029">P1</option>
 										<option value="10030">P2</option>
-										<option value="10031">P3</option>
+										<option value="10031" selected="selected">P3</option>
 										<option value="10032">P4</option>
 										<option value="10033">P5</option>
 									</select>
@@ -194,7 +194,7 @@
 										<option value="11683">Customer Success</option>
 										<option value="11684">Professional Services</option>
 										<option value="11685">Managed Services</option>
-										<option value="11686">Engineering</option>
+										<option value="11686" selected="selected">Engineering</option>
 										<option value="11693">Operations</option>
 										<option value="11890">Sales</option>
 									</select>
@@ -217,5 +217,6 @@
 		</div>
 	</div>
 </body>
-	<script type="text/javascript" src="//code.jquery.com/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/create_ticket.js"></script>
 </html>
