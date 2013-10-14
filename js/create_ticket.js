@@ -2,9 +2,15 @@ var serverInfo = new Object();
 
 function messageListener(request, sender, sendResponse) {
 	if (request.flag == 'serverinfo') {
-		sendResponse({success: true});
-		serverInfo = request.info;
-		writeValue();
+		console.log('listened serverinfo request');
+	} else if (request.flag == 'ticketinfo') {
+		if (request.data != null) {
+			sendResponse({success: true});
+			serverInfo = request.data;
+			writeValue();
+		} else {
+			sendResponse({success: false});
+		}
 	}
 }
 
@@ -22,19 +28,60 @@ chrome.runtime.onMessage.addListener(messageListener);
 $('#create-issue-submit').click(function() {
 	console.log(serverInfo);
 	var ticketInfoJson = {
-		'project-field': $('#project-field').val(),
-		'issuetype-field': $('#issuetype-field').val(),
-		'customfield_10005': $('#customfield_10005').val(),
-		'customfield_10841': $('#customfield_10841').val(),
-		'customfield_10842': $('#customfield_10842').val(),
-		'customfield_10843': $('#customfield_10843').val(),
-		'customfield_10844': $('#customfield_10844').val(),
-		'summary': $('#summary').val(),
-		'description': $('#description').val(),
-		'customfield_10002': $('#customfield_10002').val(),
-		'customfield_10846': $('#customfield_10846').val(),
-		'customfield_10847': $('#customfield_10847').val()
+		'fields': {
+			'project': {
+				'key': 'CO',
+				'name': 'CO Cloud operations'
+			},
+			'issuetype': {
+				'name': 'Log Requests'
+			},
+			'customfield_10005': $('#customfield_10005').val(),
+			'customfield_10844': $('#customfield_10844').val(),
+			'customfield_10843': {
+				'value': $('#customfield_10843').children('[selected="selected"]').text(),
+				'id': $('#customfield_10843').val()
+			},
+			'customfield_10841': {
+				'value': $('#customfield_10841').children('[selected="selected"]').text(),
+				'id': $('#customfield_10841').val()
+			},
+			'customfield_10842': {
+				'value': $('#customfield_10842').children('[selected="selected"]').text(),
+				'id': $('#customfield_10842').val()
+			},
+			'customfield_10847': {
+				'value': $('#customfield_10847').children('[selected="selected"]').text(),
+				'id': $('#customfield_10847').val()
+			},
+			'customfield_10846': {
+				'value': $('#customfield_10846').children('[selected="selected"]').text(),
+				'id': $('#customfield_10846').val()
+			},
+			'customfield_10002': {
+				'value': $('#customfield_10002').children('[selected="selected"]').text(),
+				'id': $('#customfield_10002').val()
+			},
+			'description': $('#description').val(),
+			'summary': $('#summary').val()
+		}
 	}
+	$.ajax({
+		url: 'http://jira.successfactors.com/rest/api/2/issue',
+		type: 'Post',
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(ticketInfoJson),
+		success: function(data) {
+			console.log(data);
+		},
+		error: function() {
+			alert('failed');
+		},
+		username: 'xxu',
+		password: 'Welcomexx!'
+
+	})
 	console.log(ticketInfoJson);
 	return false;
 });

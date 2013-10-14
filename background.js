@@ -17,7 +17,7 @@ function getTicketInfoByInjectJS(sourceFile) {
 }
 
 function contextMenuOnClick(info, tab) {
-	getTicketInfoByInjectJS('js/ticket_info.js');
+	getTicketInfoByInjectJS('js/parse_serverinfo.js');
 	initFormTab();
 }
 
@@ -38,9 +38,10 @@ function initFormTab() {
 	chrome.tabs.create({
 		url: 'create_ticket.html'
 	}, function(tab) {
+		
 		chrome.tabs.sendMessage(tab.id, {
-			flag: 'serverinfo',
-			info: serverInfo
+			flag: 'ticketinfo',
+			data: serverInfo
 		});
 	});
 }
@@ -48,7 +49,7 @@ function initFormTab() {
 function messageListener(request, sender, sendResponse) {
 	if(request.flag == 'serverinfo') {
 		sendResponse({success: true});
-		serverInfo = request.info;
+		serverInfo = request.data;
 	}
 }
 
