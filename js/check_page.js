@@ -1,5 +1,6 @@
 var isSFPage = false;
 checkPageInfo();
+console.log(isSFPage);
 
 chrome.runtime.sendMessage({
 	flag: 'checkresult',

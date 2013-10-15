@@ -1,29 +1,19 @@
 var iCount = 0;
 var serverInfo = new Object();
-// window.onload = function() {
-  // chrome.browserAction.setBadgeText("12");
-// }
 
-function updateBadge() {
-	if (iCount++ <= 9999) {
-		chrome.browserAction.setBadgeText({'text': iCount.toString()});
-	}
-}
-
-function getTicketInfoByInjectJS(sourceFile) {
+function injectJSToCurrentPage(sourceFile) {
 	chrome.tabs.executeScript(null, {
 		file: sourceFile 
 	});
 }
 
 function contextMenuOnClick(info, tab) {
-	getTicketInfoByInjectJS('js/parse_serverinfo.js');
-	initFormTab();
+	injectJSToCurrentPage('js/parse_serverinfo.js');
 }
 
 var contextMenuId = chrome.contextMenus.create({
 	type: 'normal',
-	title: 'Create JIRA ticket',
+	title: 'Create JIRA Ticket',
 	contexts: ['all'], 
 	onclick: contextMenuOnClick
 });
@@ -35,24 +25,43 @@ function checkResponse(response) {
 }
 
 function initFormTab() {
+	var tabId = null;
 	chrome.tabs.create({
 		url: 'create_ticket.html'
 	}, function(tab) {
-		
-		chrome.tabs.sendMessage(tab.id, {
+	});
+	var sleep = setTimeout('sendTicketInfoMessage()', 100);
+	
+}
+
+function sendTicketInfoMessage() {
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+		console.log(tabs[0].id);
+		chrome.tabs.sendMessage(tabs[0].id, {
 			flag: 'ticketinfo',
 			data: serverInfo
 		});
 	});
 }
 
+function checkPage() {
+	injectJSToCurrentPage('js/check_page.js');
+}
+
 function messageListener(request, sender, sendResponse) {
-	if(request.flag == 'serverinfo') {
-		sendResponse({success: true});
-		serverInfo = request.data;
+	switch (request.flag) {
+		case 'serverinfo': {
+			sendResponse({success: true});
+			serverInfo = request.data;
+			initFormTab();
+			break;
+		}
+		case 'checkresult': {
+			break;
+		}
 	}
 }
 
-chrome.browserAction.onClicked.addListener(getTicketInfoByInjectJS);
-
+chrome.browserAction.onClicked.addListener(injectJSToCurrentPage);
+// cchrome.tabs.onActivated.addListener(checkPage);
 chrome.runtime.onMessage.addListener(messageListener);

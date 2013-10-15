@@ -1,4 +1,8 @@
-var serverInfo = new Object();
+var serverInfo = null;
+
+String.prototype.leftTrim = function() { 
+   return this.replace(/(^\s*)/g, ""); 
+}
 
 function messageListener(request, sender, sendResponse) {
 	if (request.flag == 'serverinfo') {
@@ -8,6 +12,7 @@ function messageListener(request, sender, sendResponse) {
 			sendResponse({success: true});
 			serverInfo = request.data;
 			writeValue();
+			console.log('listened');
 		} else {
 			sendResponse({success: false});
 		}
@@ -15,7 +20,7 @@ function messageListener(request, sender, sendResponse) {
 }
 
 function writeValue() {
-	$('#customfield_10005').val(serverInfo.companyID);
+	$('#customfield_10005').val(serverInfo.companyID.leftTrim());
 	$('#summary').val('please download server.log');
 	$('#description').val('Release:' + serverInfo.release + '\nServer:' + serverInfo.server
 							+ '\nTimestamp:' + serverInfo.timestamp + '\nCompanyID:' + serverInfo.companyID
@@ -24,6 +29,19 @@ function writeValue() {
 }
 
 chrome.runtime.onMessage.addListener(messageListener);
+
+$(document).ready(function() {
+	var checkJob = setTimeout('checkInfo()', 500);
+})
+
+function checkInfo() {
+	if (serverInfo == null) {
+		alert('Oops, information parsing failed! \n\nClick "OK" to close this tab.');
+		chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+			chrome.tabs.remove(tabs[0].id);
+		})
+	}
+}
 
 $('#create-issue-submit').click(function() {
 	console.log(serverInfo);
@@ -73,7 +91,7 @@ $('#create-issue-submit').click(function() {
 		dataType: 'json',
 		data: JSON.stringify(ticketInfoJson),
 		success: function(data) {
-			console.log(data);
+			chrome.tabs.create({url: 'http://jira.successfactors.com/browse/' + data.key});
 		},
 		error: function() {
 			alert('failed');
