@@ -44,6 +44,10 @@ function checkInfo() {
 }
 
 $('#create-issue-submit').click(function() {
+	if ($('#success-alert-info').css('visibility') == 'visible') {
+		alert('Already create one ticket!');
+		return false;
+	}
 	console.log(serverInfo);
 	var ticketInfoJson = {
 		'fields': {
@@ -91,6 +95,8 @@ $('#create-issue-submit').click(function() {
 		dataType: 'json',
 		data: JSON.stringify(ticketInfoJson),
 		success: function(data) {
+		$('#success-alert-info').append('<a href="http://jira.successfactors.com/browse/'+ data.key +'">' + data.key + '</a>');
+		$('#success-alert-info').css({'visibility': 'visible'});
 			chrome.tabs.create({url: 'http://jira.successfactors.com/browse/' + data.key});
 		},
 		error: function() {
@@ -98,8 +104,7 @@ $('#create-issue-submit').click(function() {
 		},
 		username: 'xxu',
 		password: 'Welcomexx!'
-
-	})
+	});
 	console.log(ticketInfoJson);
 	return false;
 });

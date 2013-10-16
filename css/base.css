@@ -20,3 +20,13 @@ body {
 	padding-bottom: 10px;
 	margin-bottom: 10px;
 }
+
+.success-info {
+	color: red;
+	float: right;
+	visibility: hidden;
+}
+
+.success-info a {
+	color: #0072a3;
+}
